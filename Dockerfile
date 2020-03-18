@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:xenial
 
 MAINTAINER Sun Seng David Tan <sunix@sunix.org>
 
