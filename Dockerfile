@@ -9,4 +9,14 @@ RUN apt-get update && \
 
 RUN mkdir /data && chmod 777 /data
 
+USER 0
+# Set permissions on /etc/passwd and /home to allow arbitrary users to write
+COPY --chown=0:0 entrypoint.sh /
+RUN mkdir -p /home/user && chgrp -R 0 /home && chmod -R g=u /etc/passwd /etc/group /home && chmod +x /entrypoint.sh
+
+USER 10001
+ENV HOME=/home/user
+WORKDIR /projects
+ENTRYPOINT [ "/entrypoint.sh" ]
+
 CMD cd /data && pdftk *.pdf cat output large.pdf && pdf2ps large.pdf very_large.ps && ps2pdf very_large.ps final.pdf && rm large.pdf very_large.ps
