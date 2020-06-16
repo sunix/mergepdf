@@ -3,7 +3,7 @@ FROM ubuntu:xenial
 MAINTAINER Sun Seng David Tan <sunix@sunix.org>
 
 RUN apt-get update && \
-    apt-get install -y ghostscript pdftk wget imagemagick && \
+    apt-get install -y ghostscript pdftk wget imagemagick webp libwebp-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
