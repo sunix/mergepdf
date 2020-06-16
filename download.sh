@@ -8,11 +8,12 @@ wget https://www.scan-vf.net/uploads/manga/one_piece/chapters/chapitre-$chap/{01
 wget https://www.scan-vf.net/uploads/manga/one_piece/chapters/chapitre-$chap/%20\({10..25}\).jpg;
 wget https://www.scan-vf.net/uploads/manga/one_piece/chapters/chapitre-$chap/{01..25}.jpg;
 wget https://www.scan-vf.net/uploads/manga/one_piece/chapters/chapitre-$chap/{01..25}.webp;
+for webpfile in $(ls *.webp); do dwebp "$webpfile" -o "$webpfile".png; done
 rename.ul '(' '' \ *
 rename.ul ')' '' \ *
 rename.ul ' ' '' \ *
-for jpgfile in $(ls *.*g; ls *.webp); do convert "$jpgfile"  "$jpgfile".pdf; done
+for imagefile in $(ls *.*g); do convert "$imagefile"  "$imagefile".pdf; done
 pdftk *.pdf cat output large.pdf && pdf2ps large.pdf very_large.ps && ps2pdf very_large.ps final.pdf && rm large.pdf very_large.ps
 
 # could be executed with:
-# for chap in {0..199}; do /download.sh ; cp $chap/final.pdf onepiece-chapitre-"$(printf "%03d" $chap)".pdf; rm $chap -rf; done
+# for chap in {981..982}; do export chap=$chap; /download.sh ; cp $chap/final.pdf onepiece-chapitre-"$(printf "%03d" $chap)".pdf; rm $chap -rf; done
