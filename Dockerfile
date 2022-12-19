@@ -1,8 +1,8 @@
-FROM ubuntu
+FROM node:16.19.0-bullseye
 MAINTAINER Sun Seng David Tan <sunix@sunix.org>
 
 RUN apt-get update && \
-    apt-get install -y ghostscript pdftk wget imagemagick webp libwebp-dev libgraphicsmagick1-dev libmagickcore-dev texlive-extra-utils libbrotli-dev libcrypto++-dev libssl3 libcrypto++8 libssl1.1 && \
+    apt-get install -y ghostscript pdftk wget imagemagick webp libwebp-dev libgraphicsmagick1-dev libmagickcore-dev texlive-extra-utils && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
